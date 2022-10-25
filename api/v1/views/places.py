@@ -6,7 +6,7 @@
 from api.v1.views import app_views
 from models import storage
 from flask import jsonify, abort, request
-from models.user import User
+from models.place import Place
 
 classes = {"amenities": "Amenity",
            "cities": "City",
@@ -16,8 +16,8 @@ classes = {"amenities": "Amenity",
            "users": "User"}
 
 
-@app_views.route('/users', methods=['GET', 'POST'])
-def users():
+@app_views.route('/places', methods=['GET', 'POST'])
+def places():
     """
       Displays users
     """
@@ -35,7 +35,7 @@ def users():
 
 
 @app_views.route('/users/<user_id>', methods=['DELETE', 'PUT', 'GET'])
-def user_id(user_id):
+def place_id(user_id):
     """Get amenity using its ID. """
     user = storage.get(User, user_id)
     if (user):

@@ -24,7 +24,7 @@ def users():
     if request.method == 'GET':
         return jsonify([o.to_dict() for o in storage.all("User").values()])
     elif request.method == 'POST':
-       kwargs = request.get_json()
+        kwargs = request.get_json()
         if not kwargs:
             return {"error": "Not a JSON"}, 400
         if "email" not in kwargs:
@@ -51,7 +51,7 @@ def user_id(user_id):
             if not kwargs:
                 return {"error": "Not a JSON"}, 400
             for k, v in kwargs.items():
-                if k not in ["id", "created_at", "updated_at"]:
+                if k not in ["id", "email", "created_at", "updated_at"]:
                     setattr(user, k, v)
             user.save()
         return user.to_dict()
