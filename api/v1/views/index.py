@@ -13,12 +13,14 @@ classes = {"amenities": "Amenity",
            "states": "State",
            "users": "User"}
 
+
 @app_views.route('/status')
 def status():
     """
       Displays status
     """
     return {"status": "OK"}
+
 
 @app_views.route('/stats')
 def stats():
