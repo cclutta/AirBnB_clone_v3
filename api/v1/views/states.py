@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    This is the index page handler for Flask.
+    This is the states view.
 """
 
 from api.v1.views import app_views
