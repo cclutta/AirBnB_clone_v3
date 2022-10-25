@@ -17,12 +17,12 @@ classes = {"amenities": "Amenity",
            "users": "User"}
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET', 'POST'])
-def cities(state_id):
+@app_views.route('/states/<id>/cities', methods=['GET', 'POST'])
+def cities(id):
     """
       Displays cities
     """
-    state = storage.get(State, state_id)
+    state = storage.get(State, id)
     if (state):
         if request.method == 'GET':
             return jsonify([c.to_dict() for c in state.cities])
@@ -32,7 +32,7 @@ def cities(state_id):
                 return {"error": "Not a JSON"}, 400
                 if "name" not in kwargs:
                     return {"error": "Missing name"}, 400
-                new_city = City(state_id=state_id, **kwargs)
+                new_city = City(state_id=id, **kwargs)
                 new_city.save()
                 return new_city.to_dict(), 201
     abort(404)
