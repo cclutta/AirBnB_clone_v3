@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    The app module.
+    The app module. The server for the API
 """
 
 from models import storage
