@@ -2,25 +2,17 @@
 """
     This is the places view.
 """
-
 from api.v1.views import app_views
 from models import storage
-from flask import jsonify, abort, request
+from flask import abort, jsonify, request
 from models.city import City
 from models.place import Place
 from models.user import User
 from models.state import State
 from models.amenity import Amenity
 
-classes = {"amenities": "Amenity",
-           "cities": "City",
-           "places": "Place",
-           "reviews": "Review",
-           "states": "State",
-           "users": "User"}
 
-
-app_views.route('/cities/<id>/places', methods=['GET', 'POST'])
+@app_views.route('/cities/<id>/places', methods=['GET', 'POST'])
 def cities_id_places(id):
     """
         Flask route at /cities/<id>/places.
