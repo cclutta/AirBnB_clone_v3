@@ -7,6 +7,7 @@ from api.v1.views import app_views
 from models import storage
 from flask import jsonify, abort, request
 from models.city import City
+from models.state import State
 
 classes = {"amenities": "Amenity",
            "cities": "City",
@@ -37,10 +38,10 @@ def cities(state_id):
     abort(404)
 
 
-@app_views.route('/cities/<state_id>', methods=['DELETE', 'PUT', 'GET'])
-def state_id(state_id):
+@app_views.route('/cities/<city_id>', methods=['DELETE', 'PUT', 'GET'])
+def city_id(city_id):
     """Get city using its ID. """
-    city = storage.get(City, id)
+    city = storage.get(City, city_id)
     if (city):
         if request.method == 'DELETE':
             city.delete()
