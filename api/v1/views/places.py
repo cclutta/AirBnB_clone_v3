@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    This is the amenities view.
+    This is the places view.
 """
 
 from api.v1.views import app_views
@@ -20,7 +20,7 @@ classes = {"amenities": "Amenity",
            "users": "User"}
 
 
-@app_views.route('/cities/<id>/places', methods=['GET', 'POST'])
+app_views.route('/cities/<id>/places', methods=['GET', 'POST'])
 def cities_id_places(id):
     """
         Flask route at /cities/<id>/places.
@@ -48,11 +48,11 @@ def cities_id_places(id):
 
 
 @app_views.route('/places/<id>', methods=['GET', 'DELETE', 'PUT'])
-def places_id(place_id):
+def places_id(id):
     """
         Flask route at /places/<id>.
     """
-    place = storage.get(Place, place_id)
+    place = storage.get(Place, id)
     if (place):
         if request.method == 'DELETE':
             place.delete()
