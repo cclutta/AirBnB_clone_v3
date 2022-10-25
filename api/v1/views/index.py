@@ -2,7 +2,7 @@
 
 from api.v1.views import app_views
 
-@app.route('/')
+@app_views.route('/')
 def status():
     """
       Displays status
