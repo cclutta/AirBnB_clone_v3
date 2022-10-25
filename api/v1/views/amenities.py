@@ -16,31 +16,31 @@ classes = {"amenities": "Amenity",
            "users": "User"}
 
 
-@app_views.route('/states', methods=['GET', 'POST'])
-def states():
+@app_views.route('/amenities', methods=['GET', 'POST'])
+def amenities():
     """
-      Displays states
+      Displays amenities
     """
     if request.method == 'GET':
-        return jsonify([ob.to_dict() for ob in storage.all("State").values()])
+        return jsonify([o.to_dict() for o in storage.all("Amenity").values()])
     elif request.method == 'POST':
         kwargs = request.get_json()
         if not kwargs:
             return {"error": "Not a JSON"}, 400
         if "name" not in kwargs:
             return {"error": "Missing name"}, 400
-        new_state = State(**kwargs)
-        new_state.save()
-        return new_state.to_dict(), 201
+        new_amenity = Amenity(**kwargs)
+        new_amenity.save()
+        return new_amenity.to_dict(), 201
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE', 'PUT', 'GET'])
-def state_id(state_id):
-    """Get state using its ID. """
-    state = storage.get(State, state_id)
-    if (state):
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE', 'PUT', 'GET'])
+def amenity_id(amenity_id):
+    """Get amenity using its ID. """
+    amenity = storage.get(Amenity, amenity_id)
+    if (amenity):
         if request.method == 'DELETE':
-            state.delete()
+            amenity.delete()
             storage.save()
             return {}, 200
 
@@ -50,7 +50,7 @@ def state_id(state_id):
                 return {"error": "Not a JSON"}, 400
             for k, v in kwargs.items():
                 if k not in ["id", "created_at", "updated_at"]:
-                    setattr(state, k, v)
-            state.save()
-        return state.to_dict()
+                    setattr(amenity, k, v)
+            amenity.save()
+        return amenity.to_dict()
     abort(404)
