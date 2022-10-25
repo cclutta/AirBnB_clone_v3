@@ -32,7 +32,7 @@ def cities(state_id):
                 return {"error": "Not a JSON"}, 400
                 if "name" not in kwargs:
                     return {"error": "Missing name"}, 400
-                new_city = City(state_id=id, **kwargs)
+                new_city = City(state_id=state_id, **kwargs)
                 new_city.save()
                 return new_city.to_dict(), 201
     abort(404)

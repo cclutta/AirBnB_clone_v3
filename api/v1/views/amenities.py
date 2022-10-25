@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-    This is the states view.
+    This is the amenities view.
 """
 
 from api.v1.views import app_views
 from models import storage
 from flask import jsonify, abort, request
-from models.state import State
+from models.amenity import Amenity
 
 classes = {"amenities": "Amenity",
            "cities": "City",
