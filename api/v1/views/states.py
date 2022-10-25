@@ -51,5 +51,6 @@ def state_id(state_id):
             for k, v in kwargs.items():
                 if k not in ["id", "created_at", "updated_at"]:
                     setattr(state, k, v)
+            state.save()
         return state.to_dict()
     abort(404)
